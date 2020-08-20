@@ -41,7 +41,7 @@ class LabelAdapter(
     }
 
     interface LabelListener {
-        fun onLabelClicked(position: Int)
+        fun onLabelClicked(label: Label)
         fun onDeleteClicked(label: Label)
     }
 }

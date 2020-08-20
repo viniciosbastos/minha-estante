@@ -52,4 +52,8 @@ class ReadingViewModel @Inject constructor(
             book?.let { shelfBookUseCase(it) }
         }
     }
+
+    fun getLabels() {
+
+    }
 }

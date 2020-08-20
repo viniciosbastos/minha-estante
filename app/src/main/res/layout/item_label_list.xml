@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:viewBindingIgnore="true"
-        android:onClick="@{() -> listener.onLabelClicked(position)}">
+        android:onClick="@{() -> listener.onLabelClicked(label)}">
 
         <ImageView
             android:id="@+id/label_color"

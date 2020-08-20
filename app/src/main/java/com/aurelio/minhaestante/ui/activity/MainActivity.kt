@@ -94,13 +94,12 @@ class MainActivity : AppCompatActivity(), AddLabelDialog.Listener, LabelAdapter.
         viewModel.addLabel(label)
     }
 
-    override fun onLabelClicked(position: Int) {
-        if (position == 0) {
+    override fun onLabelClicked(label: Label) {
+        if (label.id == 0) {
             dialog.show()
         }
         else {
-            val item = labelList[position-1]
-            sharedViewModel.changeChosenLabel(item)
+            sharedViewModel.changeChosenLabel(label)
         }
     }
 

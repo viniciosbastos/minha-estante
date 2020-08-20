@@ -1,5 +1,6 @@
 package com.aurelio.minhaestante.ui.reading
 
+import android.content.DialogInterface
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -152,6 +153,13 @@ class ReadingFragment : Fragment(), ReadingListAdapter.ReadingAdapterListener {
     }
 
     override fun addLabel(book: Book) {
-
+        viewModel.
+        val items = listOf<String>("Label 1", "Label 2", "Label 4", "Label 5")
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Escolha um Rótulo")
+            .setItems(items.toTypedArray()) { dialogInterface: DialogInterface, i: Int ->
+                Log.d("READING_FRAGMENT", items[i])
+            }
+            .show()
     }
 }
