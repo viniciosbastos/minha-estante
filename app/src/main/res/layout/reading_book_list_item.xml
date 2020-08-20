@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.aurelio.minhaestante.domain.BookKt"
+            alias="Book" />
+        <import type="com.aurelio.minhaestante.util.ColorUtilKt"
+            alias="ColorUtil" />
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="book"
+            type="com.aurelio.minhaestante.domain.Book" />
+        <variable
+            name="listener"
+            type="com.aurelio.minhaestante.ui.reading.ReadingListAdapter.ReadingAdapterListener" />
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:viewBindingIgnore="true">
+    
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="0dp"
+            app:strokeWidth="0.25dp"
+            app:strokeColor="@android:color/darker_gray"
+            android:onClick="@{() -> listener.addProgress(position)}"
+            app:cardCornerRadius="0dp">
+    
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    
+                <EditText
+                    android:id="@+id/progressText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@null"
+                    android:ems="3"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:inputType="number"
+                    android:longClickable="false"
+                    android:textSize="14sp"
+                    android:text="@{Integer.toString(book.progress)}"
+                    app:layout_constraintStart_toEndOf="@+id/progressLabelText"
+                    app:layout_constraintTop_toTopOf="@+id/progressLabelText"
+                    tools:text="300" />
+    
+                <TextView
+                    android:id="@+id/progressPercentage"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/circle_background"
+                    android:gravity="center|center_vertical"
+                    android:textSize="32sp"
+                    android:text="@{Integer.toString(Book.progressPercentage(book))}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="50" />
+    
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{book.title}"
+                    app:layout_constraintStart_toEndOf="@+id/progressPercentage"
+                    app:layout_constraintTop_toTopOf="@+id/progressPercentage"
+                    tools:text="A Guerra dos Tronos" />
+    
+                <TextView
+                    android:id="@+id/progressLabelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{@string/progress_label(Integer.toString(book.pages))}"
+                    app:layout_constraintStart_toStartOf="@+id/titleText"
+                    app:layout_constraintTop_toBottomOf="@+id/titleText"
+                    tools:text="Página 500 / " />
+    
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:progressDrawable="@drawable/custom_progress_bar"
+                    android:rotation="-90"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:progress="@{Book.progressPercentage(book)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressPercentage"
+                    app:layout_constraintEnd_toEndOf="@+id/progressPercentage"
+                    app:layout_constraintStart_toStartOf="@+id/progressPercentage"
+                    app:layout_constraintTop_toTopOf="@+id/progressPercentage"
+                    tools:progress="10" />
+
+                <ImageView
+                    android:id="@+id/label_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/label_text"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_bookmark_24"
+                    android:tint="@{book.label == null ? @color/grey : ContextCompat.getColor(context, ColorUtil.getColor(book.label.color))}"
+                    android:onClick="@{() -> listener.addLabel(book)}"/>
+
+                <TextView
+                    android:id="@+id/label_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/label_icon"
+                    tools:text="Label" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</layout>

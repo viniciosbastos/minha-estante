@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/readingFragment">
+
+    <fragment
+        android:id="@+id/readingFragment"
+        android:name="com.aurelio.minhaestante.ui.reading.ReadingFragment"
+        android:label="Lendo"
+        tools:layout="@layout/reading_fragment" />
+    <fragment
+        android:id="@+id/shelfFragment"
+        android:name="com.aurelio.minhaestante.ui.shelf.ShelfFragment"
+        android:label="Biblioteca"
+        tools:layout="@layout/shelf_fragment" />
+    <dialog
+        android:id="@+id/addBookFragment"
+        android:name="com.aurelio.minhaestante.ui.addBook.AddBookFragment"
+        android:label="add_book_fragment"
+        tools:layout="@layout/add_book_fragment" />
+    <dialog
+        android:id="@+id/addLabelDialogFragment"
+        android:name="com.aurelio.minhaestante.ui.addLabel.AddLabelDialogFragment"
+        android:label="fragment_add_label_dialog"
+        tools:layout="@layout/fragment_add_label_dialog" />
+</navigation>

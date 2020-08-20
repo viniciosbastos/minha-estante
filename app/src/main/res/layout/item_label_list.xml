@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.aurelio.minhaestante.util.ColorUtilKt" alias="color"/>
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="listener"
+            type="com.aurelio.minhaestante.ui.activity.LabelAdapter.LabelListener" />
+        <variable
+            name="position"
+            type="Integer" />
+        <variable
+            name="label"
+            type="com.aurelio.minhaestante.domain.Label" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:viewBindingIgnore="true"
+        android:onClick="@{() -> listener.onLabelClicked(position)}">
+
+        <ImageView
+            android:id="@+id/label_color"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_bookmark_24"
+            android:tint="@{ContextCompat.getColor(context, color.getColor(label.color))}"/>
+
+        <TextView
+            android:id="@+id/label_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/label_color"
+            app:layout_constraintStart_toEndOf="@+id/label_color"
+            app:layout_constraintTop_toTopOf="@+id/label_color"
+            android:text="@{label.name}"
+            tools:text="Label Name" />
+
+        <ImageView
+            android:id="@+id/remove_button"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/label_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/label_name"
+            app:srcCompat="@drawable/ic_baseline_delete_24"
+            android:onClick="@{() -> listener.onDeleteClicked(label)}"/>
+
+        <ImageView
+            android:id="@+id/plus_ic"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_24"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

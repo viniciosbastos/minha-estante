@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MinhaEstante</string>
+    <string name="reading">Lendo</string>
+    <string name="library">Biblioteca</string>
+    <string name="add_book">Adicionar Livro</string>
+    <string name="save">Salvar</string>
+    <string name="title">Título</string>
+    <string name="author">Autor</string>
+    <string name="pages">Páginas</string>
+    <string name="loading">Carregando...</string>
+    <string name="progress_label">Página %1$s / </string>
+    <string name="added_at">Adicionado em %1$s</string>
+    <string name="labels">Seus Rótulos</string>
+    <string name="add_label">Adicionar</string>
+    <string name="add_label_header">Adicionar Rótulo</string>
+    <string name="add_label_text">Nome</string>
+    <string name="add_button">Adicionar</string>
+</resources>
