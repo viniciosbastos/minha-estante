@@ -8,4 +8,6 @@ interface LabelDataSource {
     suspend fun addLabel(label: Label)
 
     suspend fun getLabels(): Flow<List<Label>>
+
+    suspend fun deleteLabel(label: Label)
 }

@@ -153,7 +153,7 @@ class ReadingFragment : Fragment(), ReadingListAdapter.ReadingAdapterListener {
     }
 
     override fun addLabel(book: Book) {
-        viewModel.
+        //viewModel.
         val items = listOf<String>("Label 1", "Label 2", "Label 4", "Label 5")
         val dialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle("Escolha um Rótulo")

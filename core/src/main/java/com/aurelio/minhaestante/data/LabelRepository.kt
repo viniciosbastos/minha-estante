@@ -12,4 +12,5 @@ class LabelRepository @Inject constructor(
 
     suspend fun getLabels() = labelDataSource.getLabels()
 
+    suspend fun deleteLabel(label: Label) = labelDataSource.deleteLabel(label)
 }

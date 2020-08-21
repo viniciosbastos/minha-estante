@@ -29,4 +29,11 @@ class RoomLabelDataSource @Inject constructor(
                 color = label.colorName
             )
         }}
+
+    override suspend fun deleteLabel(label: Label) = labelDao.delete(
+        LabelEntity(
+            id = label.id,
+            name = label.name,
+            colorName = label.color
+    ))
 }

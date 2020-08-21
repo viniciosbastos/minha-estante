@@ -1,6 +1,7 @@
 package com.aurelio.minhaestante.db
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.aurelio.minhaestante.db.entity.LabelEntity
@@ -17,4 +18,7 @@ interface LabelDao {
 
     @Query("select max(id) from label")
     suspend fun getLastId(): Int?
+
+    @Delete
+    suspend fun delete(label: LabelEntity)
 }

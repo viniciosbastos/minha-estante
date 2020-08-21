@@ -104,6 +104,6 @@ class MainActivity : AppCompatActivity(), AddLabelDialog.Listener, LabelAdapter.
     }
 
     override fun onDeleteClicked(label: Label) {
-        Toast.makeText(this, "Removing label ${label.name}", Toast.LENGTH_LONG).show()
+        viewModel.deleteLabel(label)
     }
 }
