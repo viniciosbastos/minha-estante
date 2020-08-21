@@ -31,7 +31,7 @@
             android:elevation="0dp"
             app:strokeWidth="0.25dp"
             app:strokeColor="@android:color/darker_gray"
-            android:onClick="@{() -> listener.addProgress(position)}"
+            android:onClick="@{() -> listener.readingProgress(position)}"
             app:cardCornerRadius="0dp">
     
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -119,7 +119,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_baseline_bookmark_24"
                     android:tint="@{book.label == null ? @color/grey : ContextCompat.getColor(context, ColorUtil.getColor(book.label.color))}"
-                    android:onClick="@{() -> listener.addLabel(book)}"/>
+                    android:onClick="@{() -> listener.bookLabel(book)}"/>
 
                 <TextView
                     android:id="@+id/label_text"

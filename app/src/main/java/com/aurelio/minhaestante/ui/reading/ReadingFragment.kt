@@ -16,7 +16,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.aurelio.minhaestante.R
-import com.aurelio.minhaestante.ui.activity.SharedViewModel
 import com.aurelio.minhaestante.databinding.AddProgressLayoutBinding
 import com.aurelio.minhaestante.databinding.ReadingFragmentBinding
 import com.aurelio.minhaestante.di.MinhaEstanteApplication
@@ -50,6 +49,16 @@ class ReadingFragment : Fragment(), ReadingListAdapter.ReadingAdapterListener {
     private fun setUpObservers() {
         viewModel.books.observe(viewLifecycleOwner, Observer {
             listAdapter.submitList(it)
+        })
+
+        viewModel.navigateToChooseLabelDialog.observe(viewLifecycleOwner, Observer {
+            val items = listOf<String>("Label 1", "Label 2", "Label 4", "Label 5")
+            val dialog = MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Escolha um Rótulo")
+                .setItems(items.toTypedArray()) { dialogInterface: DialogInterface, i: Int ->
+                    Log.d("READING_FRAGMENT", items[i])
+                }
+                .show()
         })
     }
 
@@ -134,7 +143,7 @@ class ReadingFragment : Fragment(), ReadingListAdapter.ReadingAdapterListener {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun addProgress(position: Int) {
+    override fun setReadingProgress(position: Int) {
         val dialog = AddProgressLayoutBinding.inflate(LayoutInflater.from(requireContext()), view as ViewGroup, false)
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Adicionar Progresso")
@@ -152,14 +161,7 @@ class ReadingFragment : Fragment(), ReadingListAdapter.ReadingAdapterListener {
             .show()
     }
 
-    override fun addLabel(book: Book) {
-        //viewModel.
-        val items = listOf<String>("Label 1", "Label 2", "Label 4", "Label 5")
-        val dialog = MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Escolha um Rótulo")
-            .setItems(items.toTypedArray()) { dialogInterface: DialogInterface, i: Int ->
-                Log.d("READING_FRAGMENT", items[i])
-            }
-            .show()
+    override fun setBookLabel(book: Book) {
+        viewModel.setBookLabel(book)
     }
 }

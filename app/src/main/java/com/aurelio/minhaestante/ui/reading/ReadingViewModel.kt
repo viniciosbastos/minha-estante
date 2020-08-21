@@ -4,11 +4,8 @@ import androidx.lifecycle.*
 import com.aurelio.minhaestante.data.FilterRepository
 import com.aurelio.minhaestante.domain.Book
 import com.aurelio.minhaestante.domain.Label
-import com.aurelio.minhaestante.interactors.AddProgressUseCase
-import com.aurelio.minhaestante.interactors.DeleteBookUseCase
-import com.aurelio.minhaestante.interactors.LoadReadingBooksUseCase
-import com.aurelio.minhaestante.interactors.ShelfBookUseCase
-import kotlinx.coroutines.delay
+import com.aurelio.minhaestante.interactors.*
+import com.aurelio.minhaestante.util.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,6 +18,11 @@ class ReadingViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _filter: LiveData<Label?> = filterRepository.getSelectedFilter().asLiveData()
+
+    private val  _navigateToChooseLabelDialog = MutableLiveData<Event<Unit>>()
+    val navigateToChooseLabelDialog: LiveData<Event<Unit>> = _navigateToChooseLabelDialog
+
+    private var _editingBook: Book? = null
 
     val books: LiveData<List<Book>> = _filter.switchMap {label ->
         liveData<List<Book>> {
@@ -53,7 +55,8 @@ class ReadingViewModel @Inject constructor(
         }
     }
 
-    fun getLabels() {
-
+    fun setBookLabel(book: Book) {
+        _editingBook = book
+        _navigateToChooseLabelDialog.value = Event(Unit)
     }
 }

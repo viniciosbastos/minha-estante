@@ -22,8 +22,8 @@ class ReadingListAdapter (
     }
 
     interface ReadingAdapterListener {
-        fun addProgress(position: Int)
-        fun addLabel(book: Book)
+        fun setReadingProgress(position: Int)
+        fun setBookLabel(book: Book)
     }
 }
 
