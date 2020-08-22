@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.aurelio.minhaestante.ui.activity.MainViewModel
 import com.aurelio.minhaestante.ui.activity.SharedViewModel
 import com.aurelio.minhaestante.ui.addBook.AddBookViewModel
+import com.aurelio.minhaestante.ui.reading.ChooseLabelViewModel
 import com.aurelio.minhaestante.ui.reading.ReadingViewModel
 import com.aurelio.minhaestante.ui.shelf.ShelfViewModel
 import dagger.Binds
@@ -41,4 +42,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChooseLabelViewModel::class)
+    abstract fun bindChooseLabelViewModel(viewModel: ChooseLabelViewModel): ViewModel
 }

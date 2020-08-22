@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.aurelio.minhaestante.R
@@ -21,6 +22,7 @@ import com.aurelio.minhaestante.databinding.ReadingFragmentBinding
 import com.aurelio.minhaestante.di.MinhaEstanteApplication
 import com.aurelio.minhaestante.di.ViewModelProviderFactory
 import com.aurelio.minhaestante.domain.Book
+import com.aurelio.minhaestante.util.EventObserver
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 
@@ -51,14 +53,8 @@ class ReadingFragment : Fragment(), ReadingListAdapter.ReadingAdapterListener {
             listAdapter.submitList(it)
         })
 
-        viewModel.navigateToChooseLabelDialog.observe(viewLifecycleOwner, Observer {
-            val items = listOf<String>("Label 1", "Label 2", "Label 4", "Label 5")
-            val dialog = MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Escolha um Rótulo")
-                .setItems(items.toTypedArray()) { dialogInterface: DialogInterface, i: Int ->
-                    Log.d("READING_FRAGMENT", items[i])
-                }
-                .show()
+        viewModel.navigateToChooseLabelDialog.observe(viewLifecycleOwner, EventObserver {
+            findNavController().navigate(R.id.chooseLabelDialog)
         })
     }
 

@@ -25,4 +25,8 @@
         android:name="com.aurelio.minhaestante.ui.addLabel.AddLabelDialogFragment"
         android:label="fragment_add_label_dialog"
         tools:layout="@layout/fragment_add_label_dialog" />
+    <dialog
+        android:id="@+id/chooseLabelDialog"
+        android:name="com.aurelio.minhaestante.ui.reading.ChooseLabelDialog"
+        android:label="ChooseLabelDialog" />
 </navigation>
